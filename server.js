@@ -2,32 +2,40 @@ const express = require('express');
 const Razorpay = require('razorpay');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const path = require('path');
 
 dotenv.config();
 
 const app = express();
+
+// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+
+// Fix: Use the path module to correctly locate the 'public' directory
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '..', 'views'));
 
 const razorpay = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
-// Home Page
+// Home Page - Renders the EJS template
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-// Create Order
+// Create Order endpoint
 app.post('/create-order', async (req, res) => {
     const { plan } = req.body;
 
     let amount = 0;
-    if(plan === 'basic') amount = 50000;   // ₹500 in paise
-    if(plan === 'premium') amount = 100000; // ₹1000 in paise
+    if (plan === 'Starter') amount = 4900;
+    else if (plan === 'Business') amount = 14900;
+    else if (plan === 'Ultimate') amount = 29900;
 
     const options = {
         amount: amount,
@@ -39,19 +47,11 @@ app.post('/create-order', async (req, res) => {
         const order = await razorpay.orders.create(options);
         res.json(order);
     } catch (err) {
-        console.log(err);
-        res.status(500).send('Error creating order');
+        console.error("Error creating order:", err);
+        res.status(500).json({ error: 'Failed to create order' });
     }
 });
 
-// Payment Success
-app.post('/success', (req, res) => {
-    // You can verify payment here using Razorpay signature if you want
-    res.render('success', { discordLink: "https://discord.gg/xWBkRrBD2s" });
-});
-
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
-
-    console.log("Server file loaded");
-});
+// This is crucial for Vercel deployment.
+// The app instance must be exported for Vercel to use it as a serverless function.
+module.exports = app;
