@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HexaCraft Billing</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen" style="background-image: url('https://www.chromethemer.com/wallpapers/chromebook-wallpapers/images/960/minecraft-chromebook-wallpaper.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+<img src="https://media.discordapp.net/attachments/1404455780207558756/1412337686123122698/f5129cd01e5d587dbf1aba29e9ab6140.png?ex=68b7ed78&is=68b69bf8&hm=50e5c160d0d22abd2a02b6e6975a852dae553f046b4daeb86981af247bf1ac00&=&format=webp&quality=lossless&width=656&height=656"
+     class="fixed top-5 left-5 w-20 h-20 rounded-full border-2 border-white shadow-lg z-50"/>
+
+
+<header class="text-center py-10 bg-gray-800 shadow-lg">
+    <h1 class="text-5xl font-bold text-purple-500 animate-pulse">HexaCraft</h1>
+    <p class="mt-4 text-gray-300 text-lg">Choose the plan that fits your needs</p>
+</header>
+
+<main class="container mx-auto py-16 px-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <!-- Dirt Plan -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl">
+            <img src="https://gbnodes.host/Logos/Grass.png" class="mx-auto mb-4 w-16 h-16"/>
+            <h2 class="text-2xl font-semibold text-yellow-400 mb-4 text-center"> Dirt Plan</h2>
+            <ul class="mb-6 space-y-2 text-gray-300">
+                <li>⚡ CPU: 100%</li>
+                <li>🧠 RAM: 2GB</li>
+                <li>💾 Storage: 15GB SSD</li>
+                <li>💰 ₹20 /month</li>
+            </ul>
+            <button onclick="buyPlan('dirt')" class="w-full px-4 py-2 bg-indigo-600 rounded-xl hover:bg-indigo-500 transition">Buy Now</button>
+        </div>
+
+        <!-- Stone Plan -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl">
+            <img src="https://gbnodes.host/Logos/stone.png" class="mx-auto mb-4 w-16 h-16"/>
+            <h2 class="text-2xl font-semibold text-gray-400 mb-4 text-center"> Stone Plan</h2>
+            <ul class="mb-6 space-y-2 text-gray-300">
+                <li>⚡ CPU: 200%</li>
+                <li>🧠 RAM: 4GB</li>
+                <li>💾 Storage: 25GB SSD</li>
+                <li>💰 ₹40 /month</li>
+            </ul>
+            <button onclick="buyPlan('stone')" class="w-full px-4 py-2 bg-indigo-600 rounded-xl hover:bg-indigo-500 transition">Buy Now</button>
+        </div>
+
+        <!-- Iron Plan -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-2xl transform transition hover:scale-105 hover:shadow-3xl border-2 border-indigo-500">
+            <img src="https://gbnodes.host/Logos/iron.png" class="mx-auto mb-4 w-16 h-16"/>
+            <span class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-bold">Popular</span>
+            <h2 class="text-2xl font-semibold text-gray-400 mb-4 text-center"> Iron Plan</h2>
+            <ul class="mb-6 space-y-2 text-gray-300">
+                <li>⚡ CPU: 300%</li>
+                <li>🧠 RAM: 8GB</li>
+                <li>💾 Storage: 35GB SSD</li>
+                <li>💰 ₹80 /month</li>
+            </ul>
+            <button onclick="buyPlan('iron')" class="w-full px-4 py-2 bg-indigo-600 rounded-xl hover:bg-indigo-500 transition">Buy Now</button>
+        </div>
+
+        <!-- Redstone Plan -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl">
+            <img src=" https://www.vhv.rs/dpng/d/452-4520317_minecraft-redstone-block-png-png-download-bloco-de.png" class="mx-auto mb-4 w-16 h-16"/>
+            <h2 class="text-2xl font-semibold text-red-500 mb-4 text-center"> Redstone Plan</h2>
+            <ul class="mb-6 space-y-2 text-gray-300">
+                <li>⚡ CPU: 400%</li>
+                <li>🧠 RAM: 16GB</li>
+                <li>💾 Storage: 40GB SSD</li>
+                <li>💰 ₹160 /month</li>
+            </ul>
+            <button onclick="buyPlan('redstone')" class="w-full px-4 py-2 bg-indigo-600 rounded-xl hover:bg-indigo-500 transition">Buy Now</button>
+        </div>
+
+        <!-- Gold Plan -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl">
+            <img src="https://gbnodes.host/Logos/gold.png" class="mx-auto mb-4 w-16 h-16"/>
+            <h2 class="text-2xl font-semibold text-yellow-400 mb-4 text-center"> Gold Plan</h2>
+            <ul class="mb-6 space-y-2 text-gray-300">
+                <li>⚡ CPU: 500%</li>
+                <li>🧠 RAM: 32GB</li>
+                <li>💾 Storage: 50GB SSD</li>
+                <li>💰 ₹320 /month</li>
+            </ul>
+            <button onclick="buyPlan('gold')" class="w-full px-4 py-2 bg-indigo-600 rounded-xl hover:bg-indigo-500 transition">Buy Now</button>
+        </div>
+
+        <!-- Emerald Plan -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl">
+            <img src="https://gbnodes.host/Logos/emerald.png" class="mx-auto mb-4 w-16 h-16"/>
+            <h2 class="text-2xl font-semibold text-green-400 mb-4 text-center"> Emerald Plan</h2>
+            <ul class="mb-6 space-y-2 text-gray-300">
+                <li>⚡ CPU: 500%</li>
+                <li>🧠 RAM: 48GB</li>
+                <li>💾 Storage: 60GB SSD</li>
+                <li>💰 ₹480 /month</li>
+            </ul>
+            <button onclick="buyPlan('emerald')" class="w-full px-4 py-2 bg-indigo-600 rounded-xl hover:bg-indigo-500 transition">Buy Now</button>
+        </div>
+
+        <!-- Netherite Plan -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl">
+            <img src="https://gbnodes.host/Logos/netherite.png" class="mx-auto mb-4 w-16 h-16"/>
+            <h2 class="text-2xl font-semibold text-gray-400 mb-4 text-center"> Netherite Plan</h2>
+            <ul class="mb-6 space-y-2 text-gray-300">
+                <li>⚡ CPU: 700%</li>
+                <li>🧠 RAM: 64GB</li>
+                <li>💾 Storage: 70GB SSD</li>
+                <li>💰 ₹640 /month</li>
+            </ul>
+            <button onclick="buyPlan('netherite')" class="w-full px-4 py-2 bg-indigo-600 rounded-xl hover:bg-indigo-500 transition">Buy Now</button>
+        </div>
+
+        <!-- Infinity Plan -->
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl">
+            <img src="https://gbnodes.host/Logos/bedrock.png" class="mx-auto mb-4 w-16 h-16"/>
+            <h2 class="text-2xl font-semibold text-indigo-500 mb-4 text-center"> Infinity Plan</h2>
+            <ul class="mb-6 space-y-2 text-gray-300">
+                <li>⚡ CPU: ♾️ [RYZEN 9 9950X]</li>
+                <li>🧠 RAM: ♾️ [MAX 512GB]</li>
+                <li>💾 Storage: ♾️ [MAX]</li>
+                <li>💰 ₹1000 /month</li>
+            </ul>
+            <button onclick="buyPlan('infinity')" class="w-full px-4 py-2 bg-indigo-600 rounded-xl hover:bg-indigo-500 transition">Buy Now</button>
+        </div>
+
+    </div>
+</main>
+
+<!-- Features / Khubiya -->
+<section class="container mx-auto py-16 px-5">
+    <h2 class="text-4xl font-bold text-center mb-12 text-indigo-500">Why Choose Us?</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center hover:scale-105 transition">
+            <img src="https://img.icons8.com/ios-filled/100/ffffff/ssd.png" class="mb-4 w-16 h-16"/>
+            <h3 class="text-2xl font-semibold mb-2">NVME SSD Storage</h3>
+            <p class="text-gray-300">All our Servers Come with Fast & Latest Raid 1 NVME SSD Storage Drives.</p>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center hover:scale-105 transition">
+            <img src="https://img.icons8.com/ios-filled/100/ffffff/shield.png" class="mb-4 w-16 h-16"/>
+            <h3 class="text-2xl font-semibold mb-2">DDoS Protection</h3>
+            <p class="text-gray-300">All HexaCraft Servers with HEXA SHIELD DDOS Protection. Keeping your servers up 24/7.</p>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center hover:scale-105 transition">
+            <img src="https://img.icons8.com/ios-filled/100/ffffff/rocket.png" class="mb-4 w-16 h-16"/>
+            <h3 class="text-2xl font-semibold mb-2">Instant Setup</h3>
+            <p class="text-gray-300">Your Ordered Server/Service will be setup in seconds after payment, truly rapid.</p>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center hover:scale-105 transition">
+            <img src="https://img.icons8.com/ios-filled/100/ffffff/star.png" class="mb-4 w-16 h-16"/>
+            <h3 class="text-2xl font-semibold mb-2">Highly Reviewed</h3>
+            <p class="text-gray-300">We are rated 5/5, making us one of the best & most trustworthy hosting solutions.</p>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center hover:scale-105 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/2502/2502340.png" class="mb-4 w-16 h-16"/>
+            <h3 class="text-2xl font-semibold mb-2">Fast Processors</h3>
+            <p class="text-gray-300">Our Servers are Equipped with High Performance Intel & AMD Processors such as Intel I9/Ryzen9.</p>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col items-center text-center hover:scale-105 transition">
+            <img src="https://img.icons8.com/ios-filled/100/ffffff/customer-support.png" class="mb-4 w-16 h-16"/>
+            <h3 class="text-2xl font-semibold mb-2">Fast & Best Support</h3>
+            <p class="text-gray-300">HexaCraft Strives to Ensure Customer Satisfaction by providing them Fast Support 24/7.</p>
+        </div>
+
+    </div>
+</section>
+
+<!--Kuch Nahi hai end ka footer hai -->
+<footer class="text-center py-10 text-gray-400">
+    &copy; 2025 HexaCraft. All Rights Reserved.
+</footer>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
